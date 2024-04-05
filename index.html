@@ -2,59 +2,29 @@
 <html lang="en">
 
 <head>
-    <title>Maple To Do Checklist</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/1.css" type="text/css" media="screen,projection" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <script type="module">
-        // Firebase SDK 라이브러리 가져오기
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
-        // Firebase 구성 정보 설정
-        const firebaseConfig = {
-            apiKey: "AIzaSyAIP8svZiWmrZ5hcYP2R-qSeGapwrJESxk",
-            authDomain: "ilboon.firebaseapp.com",
-            projectId: "ilboon",
-            storageBucket: "ilboon.appspot.com",
-            messagingSenderId: "889902979830",
-            appId: "1:889902979830:web:e06a486199415e115bead7",
-            measurementId: "G-RZSDVG93QH"
-        };
-
-        // Firebase 인스턴스 초기화
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        document.getElementById('home').addEventListener('click', function (event) {
-            location.reload();
-        });
-
-    </script>
+    <title>Maple To Do Checklist</title>
+    <link rel="stylesheet" href="css/1.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="script.js" type="module"></script>
 </head>
 
 <body>
     <div id="container">
         <div id="wrapper">
-            <div id="header">
 
+            <!--헤더-->
+            <div id="header">
                 <h1><img src="https://maplescouter.com/images/logo.png" alt="MapleScouter 로고" class="logo"
                         style="max-width: 50px;">
-                    <a href="file:///D:/sparta/Meqqiqqi/Meggiggi/index.html">Maple To Do Checklist</a>
+                    <a href="index.html">Maple To Do Checklist</a>
                 </h1>
                 <h2>If you're worried, try using this</h2>
             </div>
 
-
+            <!-- 캐릭터 정보 -->
             <div id="sidebar">
-                <!-- <h2>캐릭터 정보</h2> -->
                 <div>
                     <img class="user-img"
                         src="https://open.api.nexon.com/static/maplestory/Character/PNFHNODPHFHKCKDENABNEFKDLKPDOEGHPOMADFMHINGHHLNLNLEEKJGKJJCPHNIHKIAOBCCDNKJLCKMIMAMKBJIOLHMFPKGEDPFDKBJEEAAAPFPDIDMJHEOLANJBMKHGOPHEAAOPEPJJJGMNHELNAEAIHOJIFIOIDBNKBOCLIABKJODNFAMLKCKKCMBFGKKDNABCGOHPADDAHJMEMFCJGBMCOGDJCCJMKOFPOLAEELFKNHBACNEOLOPDFJDGHOBG.png"
@@ -72,27 +42,27 @@
                 </div>
                 <div>
                     <div>
-                        <span style="color:#f27373;
-            font-size: 18px; margin-right: 45px;">월드</span>
-                        <span style="color:gray;
-            font-size: 18px;">루나</span>
+                        <span style="color:#f27373; font-size: 18px; margin-right: 45px;">월드</span>
+                        <span style="color:gray; font-size: 18px;">루나</span>
                     </div>
                     <div>
-                        <span style="color:#f27373;
-            font-size: 18px; margin-right: 45px;">길드</span>
-                        <span style="color:gray;
-            font-size: 18px;">구름</span>
+                        <span style="color:#f27373; font-size: 18px; margin-right: 45px;">길드</span>
+                        <span style="color:gray; font-size: 18px;">구름</span>
                     </div>
                 </div>
 
+                <!--하이퍼링크 메뉴-->
                 <div id="button">
                     <ul>
                         <div class="svg-wrapper">
                             <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
                                 <rect id="shape" height="40" width="150" />
                                 <div id="text">
-                                    <a href="https://namu.wiki/w/%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC/%EB%B3%B4%EC%8A%A4%20%EB%AA%AC%EC%8A%A4%ED%84%B0">
-                                        <span class="spot"></span><img src="https://i.namu.wiki/i/liyehGoPh7TyOV-SJfslSLGkIXTcGYic94Jc_zAnO7KZrssnHtJOqS_41FBsf2wFGvRowpu2YjIFE4-QQUdWcA.webp" alt="MapleScouter 로고" class="logo" style="max-width: 30px;"> BOSS</a>
+                                    <a
+                                        href="https://namu.wiki/w/%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8A%A4%ED%86%A0%EB%A6%AC/%EB%B3%B4%EC%8A%A4%20%EB%AA%AC%EC%8A%A4%ED%84%B0">
+                                        <span class="spot"></span><img
+                                            src="https://i.namu.wiki/i/liyehGoPh7TyOV-SJfslSLGkIXTcGYic94Jc_zAnO7KZrssnHtJOqS_41FBsf2wFGvRowpu2YjIFE4-QQUdWcA.webp"
+                                            alt="MapleScouter 로고" class="logo" style="max-width: 30px;"> BOSS</a>
                                 </div>
                             </svg>
                         </div>
@@ -103,7 +73,8 @@
                                 <div id="text">
                                     <a href="https://maplestory.nexon.com/News/Event">
                                         <span class="spot"></span>
-                                        <img src="https://maplescouter.com/images/logo.png" alt="MapleScouter 로고" class="logo" style="max-width: 30px;">EVENT</a>
+                                        <img src="https://maplescouter.com/images/logo.png" alt="MapleScouter 로고"
+                                            class="logo" style="max-width: 30px;">EVENT</a>
                                 </div>
                             </svg>
                         </div>
@@ -114,7 +85,8 @@
                                 <div id="text">
                                     <a href="https://maplestory.nexon.com/News/Notice">
                                         <span class="spot"></span>
-                                        <img src="https://lwi.nexon.com/maplestory/banner/2024/0321/bn_update_240321_44P64K18874VMD3M.png" alt="MapleScouter 로고" class="logo" style="max-width: 30px;"> NEWS</a>
+                                        <img src="https://lwi.nexon.com/maplestory/banner/2024/0321/bn_update_240321_44P64K18874VMD3M.png"
+                                            alt="MapleScouter 로고" class="logo" style="max-width: 30px;"> NEWS</a>
                                 </div>
                             </svg>
                         </div>
@@ -125,21 +97,27 @@
                                 <div id="text">
                                     <a href="https://maple.gg/">
                                         <span class="spot"></span>
-                                        <img src="https://maplescouter.com/images/logo.png" alt="MapleScouter 로고" class="logo" style="max-width: 30px;"> M.GG</a>
+                                        <img src="https://maplescouter.com/images/logo.png" alt="MapleScouter 로고"
+                                            class="logo" style="max-width: 30px;"> M.GG</a>
                                 </div>
                             </svg>
                         </div>
-                    </ul>
-                </div>
-            </div>
 
+                    </ul>
+                </div><!--하이퍼링크 메뉴-->
+
+            </div><!--캐릭터 정보-->
+
+            <!--체크리스트-->
             <div id="content">
+
                 <ul id="nav">
                     <li><a href="#intro" accesskey="h"><em>일</em>간</a></li>
                     <li><a href="#footer" accesskey="h"><em>주</em>간</a></li>
                     <li><a href="https://teamsparta.notion.site/20-2fe34877b5984a23a56bb1f0e3e2f0f3"
                             accesskey="e"><em>아</em>무거나</a></li>
                 </ul>
+
                 <div id="content_main">
                     <h2><a id="intro">Project 소개ㅋㅋ</a></h2>
                     <p class="details"> <a href="https://maplestory.nexon.com/Home/Main" class="comlink">Maple</a>Made
@@ -148,6 +126,7 @@
                     </p>
                     <p> 인생을 살아가려면 꼭 필요한 <strong>Maple To Do Checklist </strong>. 아주 쌈뽕하고 잘빠졌죠? 사람이라면 이 것을 써야함. </p>
                     <h3>Check List</h3>
+
                     <ul>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -190,10 +169,12 @@
                         <br>
                         <br>
                     </ul>
-                </div>
-            </div>
 
-        </div>
+                </div><!--content_main-->
+            </div><!--체크리스트-->
+        </div><!--wrapper-->
+
+        <!--푸터-->
         <div id="footer">
             <p class="validate">
                 <a href="#container">Top</a>
@@ -205,13 +186,12 @@
                 Member : 남현, 김나은, 이제범<br>E-mail : equis3351@naver.com
             </span>
         </div>
-    </div>
-    </div>
-    </div>
+
+    </div><!--container-->
+    
     <div align=center>Very cool 20 group
         <a href="https://teamsparta.notion.site/20-2fe34877b5984a23a56bb1f0e3e2f0f3"
             style="color: #9485be; text-decoration: none;">Meqqiqqi</a>
-
     </div>
 
 </body>
