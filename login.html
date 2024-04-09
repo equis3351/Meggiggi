@@ -5,18 +5,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checklist Login</title>
-    <link rel="stylesheet" href="css/login.css">
-
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/1.css" type="text/css" media="screen,projection" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="js/script.js" type="module"></script>
+    <link rel="stylesheet" href="css/login.css" type="text/css">
+    <link rel="stylesheet" href="css/1.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
+    <script type="module">
+
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyAIP8svZiWmrZ5hcYP2R-qSeGapwrJESxk",
+            authDomain: "ilboon.firebaseapp.com",
+            projectId: "ilboon",
+            storageBucket: "ilboon.appspot.com",
+            messagingSenderId: "889902979830",
+            appId: "1:889902979830:web:e06a486199415e115bead7",
+            measurementId: "G-RZSDVG93QH"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 각 체크박스의 변경 이벤트 핸들러 설정
+        $("#hilla, #pinkbean, #cygnus, #zakum, #vonbon, #bloodyqueen, #pierre, #vellum, #magnus, #papulatus").each(async function () {
+            // 체크박스 id와 상태 가져오기
+            let id = $(this).attr("id");
+            let isChecked = localStorage.getItem(id) === "true"; // 로컬 스토리지에서 상태 가져오기
+            $(this).prop("checked", isChecked); // 체크박스 상태 설정
+
+            $(this).click(async function () {
+                let isChecked = $(this).prop("checked");
+                localStorage.setItem(id, isChecked); // 변경된 상태를 로컬 스토리지에 저장
+
+                // Firestore 문서 업데이트
+                const docRef = doc(db, "meggiggi", "acPB3DZveunwh9LmsZaj");
+                const docSnap = await getDoc(docRef);
+
+                // 문서가 존재하는지 확인 후 수정
+                if (docSnap.exists()) {
+                    try {
+                        // 기존 문서 데이터를 가져와서 업데이트할 내용 추가
+                        let updatedData = docSnap.data();
+                        updatedData[id] = isChecked;
+
+                        // 업데이트된 데이터로 문서를 업데이트
+                        await setDoc(docRef, updatedData);
+                        console.log('Firestore 문서 업데이트 완료!');
+                    } catch (error) {
+                        console.error('Firestore 문서 업데이트 중 오류 발생:', error);
+                    }
+                } else {
+                    console.log("해당 문서가 존재하지 않습니다.");
+                }
+            });
+        });
+
+        // 매주 목요일에 모든 체크리스트를 false로 설정
+        $(document).ready(function () {
+            const today = new Date();
+            const dayOfWeek = today.getDay(); // 0 (일요일)부터 6 (토요일)까지의 값을 반환
+            if (dayOfWeek === 4) { // 목요일인 경우 (일요일을 0으로 시작하기 때문에 목요일은 4입니다)
+                resetChecklist(); // 모든 체크리스트를 false로 변경하는 함수 호출
+            }
+        });
+
+        // 모든 체크리스트를 false로 변경하는 함수
+        async function resetChecklist() {
+            const checkboxes = ["hilla", "pinkbean", "cygnus", "zakum", "vonbon", "bloodyqueen", "pierre", "vellum", "magnus", "papulatus"];
+            checkboxes.forEach(async function (id) {
+                localStorage.setItem(id, "false"); // 로컬 스토리지에 해당 체크리스트를 false로 설정
+                const docRef = doc(db, "meggiggi", "acPB3DZveunwh9LmsZaj");
+                const docSnap = await getDoc(docRef);
+
+                // 문서가 존재하는지 확인 후 수정
+                if (docSnap.exists()) {
+                    try {
+                        // 기존 문서 데이터를 가져와서 업데이트할 내용 추가
+                        let updatedData = docSnap.data();
+                        updatedData[id] = false;
+
+                        // 업데이트된 데이터로 문서를 업데이트
+                        await setDoc(docRef, updatedData);
+                        console.log('Firestore 문서 업데이트 완료!');
+                    } catch (error) {
+                        console.error('Firestore 문서 업데이트 중 오류 발생:', error);
+                    }
+                } else {
+                    console.log("해당 문서가 존재하지 않습니다.");
+                }
+            });
+        }
+
+    </script>
 </head>
 
 <body>
@@ -26,7 +112,7 @@
         <form action="">
             <div class="int-area">
                 <input type="text" name="id" id="id" autocomplete="off" required>
-                <label for="id">ID</label>
+                <label for="id">NICKNAME</label>
             </div>
             <div class="int-area">
                 <input type="password" name="pw" id="pw" autocomplete="off" required>
