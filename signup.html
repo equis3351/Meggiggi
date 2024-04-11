@@ -8,16 +8,169 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/login.css" type="text/css">
     <link rel="stylesheet" href="css/1.css" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <script type="module">
+
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyCV3_6E-dtjLryN1UcxWeBJvV5RlIDV7kY",
+            authDomain: "sparta-93f90.firebaseapp.com",
+            projectId: "sparta-93f90",
+            storageBucket: "sparta-93f90.appspot.com",
+            messagingSenderId: "123586592787",
+            appId: "1:123586592787:web:f9ff76cfb36293dfceffe6",
+            measurementId: "G-SWXGEN1WGL"
+        };
+
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        $("#btn").click(async function () {
+
+            let isValid = true;
+
+            $.each($('.int-area > input'), function (index, item) {
+                if (isValid) {
+                    if ($(item).val() == "") {
+                        $(item).next('label').addClass('warning');
+                        setTimeout(function () {
+                            $('label').removeClass('warning');
+                        }, 1500);
+                        $(item).focus();
+                        isValid = false;
+                    }
+                }
+            })
+
+            if (!isValid) return;
+
+            // if (id == "") {
+            //     $('#id').next('label').addClass('warning');
+            //     setTimeout(function () {
+            //         $('label').removeClass('warning');
+            //     }, 1500);
+            //     $('#id').focus();
+            //     return;
+            // }
+            // else if (pw == "") {
+            //     $('#pw').next('label').addClass('warning');
+            //     setTimeout(function () {
+            //         $('label').removeClass('warning');
+            //     }, 1500);
+            //     $('#pw').focus();
+            //     return;
+            // }
+            // else if (job == "") {
+            //     $('#job').next('label').addClass('warning');
+            //     setTimeout(function () {
+            //         $('label').removeClass('warning');
+            //     }, 1500);
+            //     $('#job').focus();
+            //     return;
+            // }
+            // else if (lv == "") {
+            //     $('#lv').next('label').addClass('warning');
+            //     setTimeout(function () {
+            //         $('label').removeClass('warning');
+            //     }, 1500);
+            //     $('#lv').focus();
+            //     return;
+            // }
+            // else if (world == "") {
+            //     $('#world').next('label').addClass('warning');
+            //     setTimeout(function () {
+            //         $('label').removeClass('warning');
+            //     }, 1500);
+            //     $('#world').focus();
+            //     return;
+            // }
+            // else if (guild == "") {
+            //     $('#guild').next('label').addClass('warning');
+            //     setTimeout(function () {
+            //         $('label').removeClass('warning');
+            //     }, 1500);
+            //     $('#guild').focus();
+            //     return;
+            // }
+
+            // let id = $('#id').val();
+            // let pw = $('#pw').val();
+            // let job = $('#job').val();
+            // let lv = $('#lv').val();
+            // let world = $('#world').val();
+            // let guild = $('#guild').val();
+
+            let doc = {
+                'id': $('#id').val(),
+                'pw': $('#pw').val(),
+                'job': $('#job').val(),
+                'lv': $('#lv').val(),
+                'world': $('#world').val(),
+                'guild': $('#guild').val()
+            };
+
+            await addDoc(collection(db, "Meggiggi"), doc);
+            alert('회원 가입 완료!');
+            location.replace('login.html');
+        })
+
+        function makeCharacter() {
+            let id = $('#id').val();
+            let pw = $('#pw').val();
+            let job = $('#job').val();
+            let lv = $('#lv').val();
+            let world = $('#world').val();
+            let guild = $('#guild').val();
+
+            let temp_html = `              
+              <div class="user-info">
+                    <div>
+                        <span id="nickname">${id}</span>
+                        <span id="level">${lv}</span>
+                    </div>
+                    <div>
+                        <span id="job">${job}</span>
+                        <span id="level-text"> Level</span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span style="color:#f27373;
+            font-size: 18px; margin-right: 45px;">월드</span>
+                        <span style="color:gray;
+            font-size: 18px;">${world}</span>
+                    </div>
+                    <div>
+                        <span style="color:#f27373;
+            font-size: 18px; margin-right: 45px;">길드</span>
+                        <span style="color:gray;
+            font-size: 18px;">${guild}</span>
+                    </div>
+                </div>`;
+            $('userInfo').append(temp_html);
+        }
+
+    </script>
 </head>
 
 <body>
 
-    
+
     <section class="login-form">
         <h1>SIGN UP</h1>
-        <form action="">
+        <form>
             <div class="int-area">
                 <input type="text" name="id" id="id" autocomplete="off" required>
                 <label for="id">NICKNAME</label>
@@ -43,35 +196,10 @@
                 <label for="guild">GUILD</label>
             </div>
             <div class="btn-area">
-                <button id="btn" type="submit">CREATE ACCOUNT</button>
+                <button id="btn" type="button">CREATE ACCOUNT</button>
             </div>
         </form>
     </section>
-
-    <script>
-        let id = $('#id');
-        let pw = $('#pw');
-        let btn = $('#btn');
-
-        $(btn).on('click', function () {
-
-            if ($(id).val() == "") {
-                $(id).next('label').addClass('warning');
-                setTimeout(function () {
-                    $('label').removeClass('warning');
-                }, 1500);
-            }
-            else if ($(pw).val() == "") {
-                $(pw).next('label').addClass('warning');
-                setTimeout(function () {
-                    $('label').removeClass('warning');
-                }, 1500);
-            }
-        });
-    </script>
-
-
-
 </body>
 
 </html>
