@@ -1,3 +1,4 @@
+/* 기본 스타일 */
 body {
     font: 76% Georgia;
     color: #646F5E;
@@ -13,7 +14,6 @@ body {
 .clear {
     clear: both;
 }
-
 
 /* 유저 정보 */
 .user-info {
@@ -51,7 +51,7 @@ body {
     font-size: 15px;
 }
 
-/* 유저 정보 끝 */
+/* 네비게이션 */
 #nav .hidden {
     display: none;
 }
@@ -66,9 +66,9 @@ blockquote {
     font-size: 120%;
 }
 
+/* 컨테이너 및 래퍼 */
 #container {
     width: 780px;
-    /* background:url(../) top repeat-y; */
     background-color: white;
     margin: 0 auto;
     box-shadow: 0px 0px 10px 5px rgb(156, 156, 156);
@@ -79,6 +79,7 @@ blockquote {
     margin: 0 auto;
 }
 
+/* 헤더 */
 #header {
     height: 233px;
     background: url("https://lwi.nexon.com/maplestory/common/media/artwork/artwork_119.jpg") center;
@@ -105,12 +106,11 @@ blockquote {
     text-transform: uppercase;
 }
 
+/* 사이드바 */
 #sidebar {
     width: 260px;
     float: left;
     padding: 20px;
-    /* background:url(../images/sidebartop.jpg) no-repeat; */
-
 }
 
 #sidebar h2 {
@@ -162,6 +162,7 @@ blockquote {
     font: 140% Trebuchet MS;
 }
 
+/* 콘텐츠 */
 #content {
     margin: 0 0 0 300px;
     background-color: #273322;
@@ -197,10 +198,10 @@ a em {
     text-decoration: underline;
 }
 
+/* 컨텐츠 메인 */
 #content_main {
     margin: 18px 0 0 0;
     padding: 5px 15px 15px 15px;
-    /* background:url(../images/content_sub.jpg) top left no-repeat; */
     background-color: rgb(252, 253, 231);
 }
 
@@ -237,10 +238,6 @@ ol {
     font: 180% Arial;
 }
 
-#intro {
-    color: #596356;
-}
-
 .user-img {
     border: 3px solid #ebebeb;
 }
@@ -263,6 +260,7 @@ p.details a.comlink {
     float: right;
 }
 
+/* 푸터 */
 #footer {
     text-align: center;
     margin: 30px 0 0 0;
@@ -270,7 +268,6 @@ p.details a.comlink {
     font-size: 90%;
     border-top: 1px solid #333;
     margin: 20px;
-
 }
 
 .validate {
@@ -282,13 +279,13 @@ p.details a.comlink {
     text-decoration-line: none;
 }
 
-/* 버튼시작! */
+/* 버튼 */
 #button {
     text-align: left;
     padding-top: 50px;
 }
 
-/* Spot은 href 안쪽의 span으로, 부모를 채우고 전체 div에 대한 hover와 링크 작동을 가능하게 합니다 */
+/* Spot */
 .spot {
     position: absolute;
     width: 100%;
@@ -297,15 +294,10 @@ p.details a.comlink {
     left: 0;
 }
 
-/*
-      이것은 SVG 자체가 채울 외부 SVG 래퍼입니다. 여러 개의 svg-wrapper 클래스를 나란히 배치할 수 있습니다
-  */
-
 .svg-wrapper {
     margin-top: 0;
     position: relative;
     width: 150px;
-    /*HTML에서 지정된 높이와 너비와 동일한 높이/너비를 사용해야함*/
     height: 40px;
     display: inline-block;
     border-radius: 3px;
@@ -313,11 +305,6 @@ p.details a.comlink {
     margin-right: 5px;
     margin-bottom: 10px;
 }
-
-/*
-    여기서는 hover가 없을 때 SVG의 채우기, 색상, 선 두께 및 선 패턴을 정의합니다.
-    dasharray와 offset은 단어 아래의 선 위치를 함께 정의하며, 전환 속도도 설정됩니다.
-  */
 
 #shape {
     stroke-width: 6px;
@@ -327,8 +314,6 @@ p.details a.comlink {
     stroke-dashoffset: -220;
     transition: 1s all ease;
 }
-
-/* SVG 내부로 텍스트를 밀어올립니다. 이렇게 하지 않으면 텍스트가 div 요소 아래에 위치합니다. */
 
 #text {
     margin-top: -35px;
@@ -342,15 +327,26 @@ p.details a.comlink {
     font-size: 1.1em;
 }
 
-/* 
-      마우스 커서가 올라간 상태에서 모양을 변경함.
-      (선의 색깔과 두께를 변경하고, 버튼을 둘러 싸게 함.)
-  */
-
 .svg-wrapper:hover #shape {
     stroke-dasharray: 50 0;
     stroke-width: 3px;
     stroke-dashoffset: 0;
     stroke: #06D6A0;
 }
-/* 버튼 끝 */
+
+/* 스크롤 관련 */
+.row {
+    width: 450px;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.row::-webkit-scrollbar {
+    display: none;
+}
+
+.col-8 {
+    width: 100%;
+    margin: 0 auto;
+    overflow-y: scroll;
+}
