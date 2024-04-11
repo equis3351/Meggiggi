@@ -136,43 +136,45 @@
             <div id="header">
                 <h1><img src="https://maplescouter.com/images/logo.png" alt="MapleScouter 로고" class="logo"
                         style="max-width: 50px;">
-                    <a href="file:///D:/sparta/Meqqiqqi/Meggiggi/index.html">Maple To Do Checklist</a>
+                    <a href="index.html">Maple To Do Checklist</a>
                 </h1>
                 <h2>If you're worried, try using this</h2>
             </div>
 
             <div id="sidebar">
-                <!-- <h2>캐릭터 정보</h2> -->
                 <div>
                     <img class="user-img"
                         src="https://open.api.nexon.com/static/maplestory/Character/PNFHNODPHFHKCKDENABNEFKDLKPDOEGHPOMADFMHINGHHLNLNLEEKJGKJJCPHNIHKIAOBCCDNKJLCKMIMAMKBJIOLHMFPKGEDPFDKBJEEAAAPFPDIDMJHEOLANJBMKHGOPHEAAOPEPJJJGMNHELNAEAIHOJIFIOIDBNKBOCLIABKJODNFAMLKCKKCMBFGKKDNABCGOHPADDAHJMEMFCJGBMCOGDJCCJMKOFPOLAEELFKNHBACNEOLOPDFJDGHOBG.png"
                         width="240" height="240">
                 </div>
-                <div class="user-info">
-                    <div>
-                        <span id="nickname">퇴사한나도</span>
-                        <span id="level">272</span>
+
+                <div id="userInfo">
+                    <div class="user-info">
+                        <div>
+                            <span id="nickname">퇴사한나도</span>
+                            <span id="level">272</span>
+                        </div>
+                        <div>
+                            <span id="job">엔젤릭버스터</span>
+                            <span id="level-text"> Level</span>
+                        </div>
                     </div>
                     <div>
-                        <span id="job">엔젤릭버스터</span>
-                        <span id="level-text"> Level</span>
+                        <div>
+                            <span style="color:#f27373;
+                                    font-size: 18px; margin-right: 45px;">월드</span>
+                            <span style="color:gray;
+                                    font-size: 18px;">루나</span>
+                        </div>
+                        <div>
+                            <span style="color:#f27373;
+                                    font-size: 18px; margin-right: 45px;">길드</span>
+                            <span style="color:gray;
+                                    font-size: 18px;">구름</span>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <div>
-                        <span style="color:#f27373;
-            font-size: 18px; margin-right: 45px;">월드</span>
-                        <span style="color:gray;
-            font-size: 18px;">루나</span>
-                    </div>
-                    <div>
-                        <span style="color:#f27373;
-            font-size: 18px; margin-right: 45px;">길드</span>
-                        <span style="color:gray;
-            font-size: 18px;">구름</span>
-                    </div>
-                </div>
-            </div>
+
                 <div id="button">
                     <ul>
                         <div class="svg-wrapper">
@@ -246,7 +248,8 @@
                     <div class="row">
                         <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true"
                             class="scrollspy-example" tabindex="0">
-                            <h3 id="list-item-1">일일 퀘스트!</h3>
+
+                            <h3 id="list-item-1">일간 퀘스트!</h3>
                             <div class="D-1">
                                 <input class="form-check-input" type="checkbox" value="" id="daily-union-coin">
                                 <label class="form-check-label" for="daily-union-coin">
@@ -254,9 +257,9 @@
                                 </label>
                             </div>
                             <div class="D-2">
-                                <input class="form-check-input" type="checkbox" value="2" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    어센틱심볼 일일퀘스트
+                                <input class="form-check-input" type="checkbox" value="" id="daily-authentic-symbol">
+                                <label class="form-check-label" for="daily-authentic-symbol">
+                                    아케인심볼, 어센틱심볼 일일퀘스트
                                 </label>
                             </div>
                             <div class="D-3">
@@ -265,7 +268,7 @@
                                     몬스터파크, 몬스터파크 익스트림
                                 </label>
                             </div>
-                            <h6>~~~일일보스~~~</h6>
+                            <h6><br>~~~일일보스~~~<br></h6>
                             <div class="D-4">
                                 <input class="form-check-input" type="checkbox" value="" id="daily-zakum-normal">
                                 <label class="form-check-label" for="daily-zakum-normal">
@@ -332,17 +335,17 @@
                                     파풀라투스(이지, 노말)
                                 </label>
                             </div>
-                            <h6>~~~이벤트~~~</h6>
+                            <h6><br>~~~이벤트~~~<br></h6>
                             <div class="D-14">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    파풀라투스(이지, 노말)
+                                <input class="form-check-input" type="checkbox" value="" id="daily_cinderellas_golden_carriage">
+                                <label class="form-check-label" for="daily_cinderellas_golden_carriage">
+                                    슈피겔라의 황금마차
                                 </label>
                             </div>
-                            <h3 id="list-item-2">주간 퀘스트</h3>
+
+                            <h3 id="list-item-2"><br><br>주간 퀘스트!<br></h3>
                             <div class="W-1">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-epic-dungeon-high-mountain">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-epic-dungeon-high-mountain">
                                 <label class="form-check-label" for="weekly-epic-dungeon-high-mountain">
                                     에픽 던전 : 하이마운틴
                                 </label>
@@ -354,55 +357,49 @@
                                 </label>
                             </div>
                             <div class="W-3">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-chu-chu-island-hungry-muto">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-chu-chu-island-hungry-muto">
                                 <label class="form-check-label" for="weekly-chu-chu-island-hungry-muto">
                                     츄츄 아일랜드 - 배고픈 무토
                                 </label>
                             </div>
                             <div class="W-4">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-lacheln-city-midnight-chaser">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-lacheln-city-midnight-chaser">
                                 <label class="form-check-label" for="weekly-lacheln-city-midnight-chaser">
                                     꿈의 도시 레헬른 - 미드나잇 체이서
                                 </label>
                             </div>
                             <div class="W-5">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-arcana-forest-spirit-savior">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-arcana-forest-spirit-savior">
                                 <label class="form-check-label" for="weekly-arcana-forest-spirit-savior">
                                     신비의 숲 아르카나 -스피릿 세이비어
                                 </label>
                             </div>
                             <div class="W-6">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-morass-swamp-memory">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-morass-swamp-memory">
                                 <label class="form-check-label" for="weekly-morass-swamp-memory">
                                     기억의 늪 모라스 - 엔하임 디펜스
                                 </label>
                             </div>
                             <div class="W-7">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-esfera-ocean-protector">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-esfera-ocean-protector">
                                 <label class="form-check-label" for="weekly-esfera-ocean-protector">
                                     태초의 바다 에스페라 - 프로텍트 에스페라
                                 </label>
                             </div>
                             <div class="W-8">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-guild-content-underground-river">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-guild-content-underground-river">
                                 <label class="form-check-label" for="weekly-guild-content-underground-river">
                                     길드 컨텐츠 : 지하 수로
                                 </label>
                             </div>
                             <div class="W-9">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-guild-content-flag-race">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-guild-content-flag-race">
                                 <label class="form-check-label" for="weekly-guild-content-flag-race">
                                     길드 컨텐츠 : 플래그 레이스
                                 </label>
                             </div>
-                            <h6>~~~주간보스~~~</h6>
+
+                            <h6><br>~~~주간보스~~~<br></h6>
                             <div class="W-10">
                                 <input class="form-check-input" type="checkbox" value="" id="weekly-hard-hilla">
                                 <label class="form-check-label" for="weekly-hard-hilla">
@@ -476,22 +473,19 @@
                                 </label>
                             </div>
                             <div class="W-22">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-guardian-angel-slime-normal-chaos">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-guardian-angel-slime-normal-chaos">
                                 <label class="form-check-label" for="weekly-guardian-angel-slime-normal-chaos">
                                     가디언 엔젤 슬라임(노말, 카오스)
                                 </label>
                             </div>
                             <div class="W-23">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-lucid-easy-normal-hard">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-lucid-easy-normal-hard">
                                 <label class="form-check-label" for="weekly-lucid-easy-normal-hard">
                                     루시드(이지, 노말, 하드)
                                 </label>
                             </div>
                             <div class="W-24">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-will-easy-normal-hard">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-will-easy-normal-hard">
                                 <label class="form-check-label" for="weekly-will-easy-normal-hard">
                                     윌(이지, 노말, 하드)
                                 </label>
@@ -509,29 +503,25 @@
                                 </label>
                             </div>
                             <div class="W-27">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-hard-hilla-normal-chaos">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-hard-hilla-normal-chaos">
                                 <label class="form-check-label" for="weekly-hard-hilla-normal-chaos">
                                     진힐라(노말, 하드)
                                 </label>
                             </div>
                             <div class="W-28">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-gloom-easy-normal-hard">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-gloom-easy-normal-hard">
                                 <label class="form-check-label" for="weekly-gloom-easy-normal-hard">
                                     세렌(노말, 하드, 익스트림)
                                 </label>
                             </div>
                             <div class="W-29">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-berum-normal-chaos-extreme">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-berum-normal-chaos-extreme">
                                 <label class="form-check-label" for="weekly-berum-normal-chaos-extreme">
                                     칼로스(이지, 노말, 카오스, 익스트림)
                                 </label>
                             </div>
                             <div class="W-30">
-                                <input class="form-check-input" type="checkbox" value=""
-                                    id="weekly-calling-easy-normal-hard-extreme">
+                                <input class="form-check-input" type="checkbox" value="" id="weekly-calling-easy-normal-hard-extreme">
                                 <label class="form-check-label" for="weekly-calling-easy-normal-hard-extreme">
                                     카링(이지, 노말, 하드, 익스트림)
                                 </label>
