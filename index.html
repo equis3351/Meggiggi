@@ -16,16 +16,25 @@
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
         // Firebase 구성 정보 설정
         const firebaseConfig = {
-            apiKey: "AIzaSyAIP8svZiWmrZ5hcYP2R-qSeGapwrJESxk",
-            authDomain: "ilboon.firebaseapp.com",
-            projectId: "ilboon",
-            storageBucket: "ilboon.appspot.com",
-            messagingSenderId: "889902979830",
-            appId: "1:889902979830:web:e06a486199415e115bead7",
-            measurementId: "G-RZSDVG93QH"
+            // apiKey: "AIzaSyAIP8svZiWmrZ5hcYP2R-qSeGapwrJESxk",
+            // authDomain: "ilboon.firebaseapp.com",
+            // projectId: "ilboon",
+            // storageBucket: "ilboon.appspot.com",
+            // messagingSenderId: "889902979830",
+            // appId: "1:889902979830:web:e06a486199415e115bead7",
+            // measurementId: "G-RZSDVG93QH"
+            //나은이DB
+            apiKey: "AIzaSyCV3_6E-dtjLryN1UcxWeBJvV5RlIDV7kY",
+            authDomain: "sparta-93f90.firebaseapp.com",
+            projectId: "sparta-93f90",
+            storageBucket: "sparta-93f90.appspot.com",
+            messagingSenderId: "123586592787",
+            appId: "1:123586592787:web:f9ff76cfb36293dfceffe6",
+            measurementId: "G-SWXGEN1WGL"
         };
 
         // Firebase 인스턴스 초기화
@@ -60,7 +69,32 @@
         ];
 
         // 각 체크박스의 변경 이벤트 핸들러 설정
-        $(document).ready(function () {
+        $(document).ready(async function () {
+
+            let loginId = window.localStorage.getItem('id');
+            console.log(loginId);
+
+ 
+            // 아이디로 DB 조회
+            const q = query(collection(db, "USER"), where("id", "==", loginId));
+            const querySnapshot = await getDocs(q);
+
+            // DB에 아이디가 없을 떄
+            if (querySnapshot.size == 0) {
+                location.replace('login.html');
+            }
+
+            // 로그인 처리
+            querySnapshot.forEach((doc) => {
+                let data = doc.data();
+                $('#nickname').text(data.id);
+                $('#job').text(data.job);
+                $('#level').text(data.lv);
+                $('#world').text(data.world);
+                $('#guild').text(data.guild);
+            });
+
+
             // 데일리 체크박스의 변경 이벤트 핸들러 설정
             dailyCheckboxes.forEach(function (id) {
                 const checkboxId = `#${id}`;
@@ -126,6 +160,59 @@
             }
         }
 
+
+        let id = $('#id').val();
+        let pw = $('#pw').val();
+        let job = $('#job').val();
+        let lv = $('#lv').val();
+        let world = $('#world').val();
+        let guild = $('#guild').val();
+
+
+        let docs = await getDocs(collection(db, "USER"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+
+            let id = row['id'];
+            let pw = row['pw'];
+            let job = row['job'];
+            let lv = row['lv'];
+            let world = row['world'];
+            let guild = row['guild'];
+
+            let temp_html = `              
+              <div class="user-info">
+                    <div>
+                        <span id="nickname">${id}</span>
+                        <span id="level">${lv}</span>
+                    </div>
+                    <div>
+                        <span id="job">${job}</span>
+                        <span id="level-text"> Level</span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span style="color:#f27373;
+            font-size: 18px; margin-right: 45px;">월드</span>
+                        <span style="color:gray;
+            font-size: 18px;">${world}</span>
+                    </div>
+                    <div>
+                        <span style="color:#f27373;
+            font-size: 18px; margin-right: 45px;">길드</span>
+                        <span style="color:gray;
+            font-size: 18px;">${guild}</span>
+                    </div>
+                </div>`;
+            $('userInfo').append(temp_html);
+        });
+
+        $("#logout").click(function(){
+            window.localStorage.removeItem('id');
+            location.replace('login.html');
+        })
+
     </script>
 
 </head>
@@ -163,13 +250,13 @@
                         <div>
                             <span style="color:#f27373;
                                     font-size: 18px; margin-right: 45px;">월드</span>
-                            <span style="color:gray;
+                            <span id="world" style="color:gray;
                                     font-size: 18px;">루나</span>
                         </div>
                         <div>
                             <span style="color:#f27373;
                                     font-size: 18px; margin-right: 45px;">길드</span>
-                            <span style="color:gray;
+                            <span id="guild" style="color:gray;
                                     font-size: 18px;">구름</span>
                         </div>
                     </div>
@@ -225,6 +312,18 @@
                                 </div>
                             </svg>
                         </div>
+
+                        <div class="svg-wrapper">
+                            <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+                                <rect id="shape" height="40" width="150" />
+                                <div id="text">
+                                    <a id="logout">
+                                        <span class="spot"></span>
+                                        <img src="https://meaegi.com/icon_128x128.png" alt="MapleScouter 로고"
+                                            class="logo" style="max-width: 30px;">LOGOUT</a>
+                                </div>
+                            </svg>
+                        </div>
                     </ul>
                 </div>
             </div>
@@ -242,7 +341,8 @@
                         in
                         <a href="https://www.nexon.com/Home/Game">NEXON</a> on 2003.4.29.
                     </p>
-                    <p> 인생을 살아가려면 꼭 필요한 <strong>Maple To Do Checklist </strong>. 아주 쌈뽕하고 잘빠졌죠? 사람이라면 이 것을 써야함. </p>
+                    <p> 인생을 살아가려면 꼭 필요한 <strong><em>Maple To Do Checklist</em></strong>. 아주 쌈뽕하고 잘빠졌죠? 사람이라면 이 것을 써야함.
+                    </p>
 
 
                     <div class="row">
@@ -337,7 +437,8 @@
                             </div>
                             <h6><br>~~~이벤트~~~<br></h6>
                             <div class="D-14">
-                                <input class="form-check-input" type="checkbox" value="" id="daily_cinderellas_golden_carriage">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="daily_cinderellas_golden_carriage">
                                 <label class="form-check-label" for="daily_cinderellas_golden_carriage">
                                     슈피겔라의 황금마차
                                 </label>
@@ -345,7 +446,8 @@
 
                             <h3 id="list-item-2"><br><br>주간 퀘스트!<br></h3>
                             <div class="W-1">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-epic-dungeon-high-mountain">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-epic-dungeon-high-mountain">
                                 <label class="form-check-label" for="weekly-epic-dungeon-high-mountain">
                                     에픽 던전 : 하이마운틴
                                 </label>
@@ -357,43 +459,50 @@
                                 </label>
                             </div>
                             <div class="W-3">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-chu-chu-island-hungry-muto">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-chu-chu-island-hungry-muto">
                                 <label class="form-check-label" for="weekly-chu-chu-island-hungry-muto">
                                     츄츄 아일랜드 - 배고픈 무토
                                 </label>
                             </div>
                             <div class="W-4">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-lacheln-city-midnight-chaser">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-lacheln-city-midnight-chaser">
                                 <label class="form-check-label" for="weekly-lacheln-city-midnight-chaser">
                                     꿈의 도시 레헬른 - 미드나잇 체이서
                                 </label>
                             </div>
                             <div class="W-5">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-arcana-forest-spirit-savior">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-arcana-forest-spirit-savior">
                                 <label class="form-check-label" for="weekly-arcana-forest-spirit-savior">
                                     신비의 숲 아르카나 -스피릿 세이비어
                                 </label>
                             </div>
                             <div class="W-6">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-morass-swamp-memory">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-morass-swamp-memory">
                                 <label class="form-check-label" for="weekly-morass-swamp-memory">
                                     기억의 늪 모라스 - 엔하임 디펜스
                                 </label>
                             </div>
                             <div class="W-7">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-esfera-ocean-protector">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-esfera-ocean-protector">
                                 <label class="form-check-label" for="weekly-esfera-ocean-protector">
                                     태초의 바다 에스페라 - 프로텍트 에스페라
                                 </label>
                             </div>
                             <div class="W-8">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-guild-content-underground-river">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-guild-content-underground-river">
                                 <label class="form-check-label" for="weekly-guild-content-underground-river">
                                     길드 컨텐츠 : 지하 수로
                                 </label>
                             </div>
                             <div class="W-9">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-guild-content-flag-race">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-guild-content-flag-race">
                                 <label class="form-check-label" for="weekly-guild-content-flag-race">
                                     길드 컨텐츠 : 플래그 레이스
                                 </label>
@@ -473,19 +582,22 @@
                                 </label>
                             </div>
                             <div class="W-22">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-guardian-angel-slime-normal-chaos">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-guardian-angel-slime-normal-chaos">
                                 <label class="form-check-label" for="weekly-guardian-angel-slime-normal-chaos">
                                     가디언 엔젤 슬라임(노말, 카오스)
                                 </label>
                             </div>
                             <div class="W-23">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-lucid-easy-normal-hard">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-lucid-easy-normal-hard">
                                 <label class="form-check-label" for="weekly-lucid-easy-normal-hard">
                                     루시드(이지, 노말, 하드)
                                 </label>
                             </div>
                             <div class="W-24">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-will-easy-normal-hard">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-will-easy-normal-hard">
                                 <label class="form-check-label" for="weekly-will-easy-normal-hard">
                                     윌(이지, 노말, 하드)
                                 </label>
@@ -503,25 +615,29 @@
                                 </label>
                             </div>
                             <div class="W-27">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-hard-hilla-normal-chaos">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-hard-hilla-normal-chaos">
                                 <label class="form-check-label" for="weekly-hard-hilla-normal-chaos">
                                     진힐라(노말, 하드)
                                 </label>
                             </div>
                             <div class="W-28">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-gloom-easy-normal-hard">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-gloom-easy-normal-hard">
                                 <label class="form-check-label" for="weekly-gloom-easy-normal-hard">
                                     세렌(노말, 하드, 익스트림)
                                 </label>
                             </div>
                             <div class="W-29">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-berum-normal-chaos-extreme">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-berum-normal-chaos-extreme">
                                 <label class="form-check-label" for="weekly-berum-normal-chaos-extreme">
                                     칼로스(이지, 노말, 카오스, 익스트림)
                                 </label>
                             </div>
                             <div class="W-30">
-                                <input class="form-check-input" type="checkbox" value="" id="weekly-calling-easy-normal-hard-extreme">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="weekly-calling-easy-normal-hard-extreme">
                                 <label class="form-check-label" for="weekly-calling-easy-normal-hard-extreme">
                                     카링(이지, 노말, 하드, 익스트림)
                                 </label>
@@ -532,7 +648,8 @@
 
                 </div>
             </div>
-
+            <br>
+            <br>
         </div>
         <div id="footer">
             <p class="validate">
@@ -553,7 +670,6 @@
             style="color: #9485be; text-decoration: none;">Meqqiqqi</a>
 
     </div>
-
 </body>
 
 </html>
