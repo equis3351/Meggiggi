@@ -1,382 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-<style>
-    body {
-        font: 76% Georgia;
-        color: #646F5E;
-        background: linear-gradient(45deg, #f7eccc 30%, #88bdf3, #feb6aa);
-        margin: 0;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
-    .clear {
-        clear: both;
-    }
-
-
-    /* 유저 정보 */
-    .user-info {
-        border-bottom: 1px solid rgba(128, 128, 128, 0.726);
-        padding-top: 10px;
-        padding-bottom: 15px;
-        margin-bottom: 20px;
-        font-family: "Noto Sans KR", sans-serif;
-        font-optical-sizing: auto;
-    }
-
-    .user-info div {
-        padding: 3px;
-    }
-
-    #nickname {
-        color: black;
-        font-size: 25px;
-    }
-
-    #level {
-        color: #f05353;
-        float: right;
-        font-size: 25px;
-    }
-
-    #job {
-        color: gray;
-        font-size: 15px;
-    }
-
-    #level-text {
-        color: #f27373;
-        float: right;
-        font-size: 15px;
-    }
-
-    /* 유저 정보 끝 */
-    #nav .hidden {
-        display: none;
-    }
-
-    em em {
-        font-style: normal;
-    }
-
-    blockquote {
-        background: #273322;
-        border: 1px solid #202B1C;
-        font-size: 120%;
-    }
-
-    #container {
-        width: 780px;
-        /* background:url(../) top repeat-y; */
-        background-color: white;
-        margin: 0 auto;
-        box-shadow: 0px 0px 10px 5px rgb(156, 156, 156);
-    }
-
-    #wrapper {
-        width: 740px;
-        margin: 0 auto;
-    }
-
-    #header {
-        height: 233px;
-        background: url("https://lwi.nexon.com/maplestory/common/media/artwork/artwork_119.jpg") center;
-    }
-
-    #header h1 {
-        text-align: center;
-        padding: 15px 0 0 0;
-        color: #fff;
-        font-size: 240%;
-        font-weight: normal;
-    }
-
-    #header h1 a {
-        color: #fff;
-        text-decoration: none;
-    }
-
-    #header h2 {
-        color: #7d6fa2;
-        text-align: center;
-        font: 80% Verdana;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-    }
-
-    #sidebar {
-        width: 260px;
-        float: left;
-        padding: 20px;
-        /* background:url(../images/sidebartop.jpg) no-repeat; */
-
-    }
-
-    #sidebar h2 {
-        border-bottom: 2px solid #AEA68D;
-        color: #382725;
-        font: 165% Georgia;
-        font-weight: normal;
-        padding: 10px 5px;
-        line-height: 29px;
-    }
-
-    #sidebar #sidenav {
-        margin: 10px 0;
-    }
-
-    #sidebar #sidenav li {
-        list-style: none;
-        padding: 5px 2px;
-        border-bottom: 1px solid #eebd37;
-    }
-
-    #sidebar #sidenav li a {
-        padding: 5px 2px;
-        display: block;
-        font: 130% Georgia;
-        text-decoration: none;
-        color: #3D3725;
-        background: url(https://files.slack.com/files-pri/T06B9PCLY1E-F06SK1ZUL6N/sidenava.gif) right no-repeat;
-    }
-
-    #sidebar #sidenav a:hover {
-        color: #000;
-    }
-
-    #sidebar p {
-        font-size: 90%;
-        line-height: 24px;
-        color: #805955;
-        margin: 10px 0;
-        padding: 5px;
-    }
-
-    #sidebar input {
-        background: #A39783;
-        color: #3D3725;
-        padding: 4px;
-        width: 250px;
-        border: none;
-        font: 140% Trebuchet MS;
-    }
-
-    #content {
-        margin: 0 0 0 300px;
-        background-color: #273322;
-        background: url(https://files.slack.com/files-pri/T06B9PCLY1E-F06SXMBUPLH/content.jpg) top left no-repeat;
-    }
-
-    #nav {
-        padding: 17px 0 0 0;
-        margin: 0;
-    }
-
-    #nav li {
-        list-style: none;
-        display: inline;
-        margin: 0;
-    }
-
-    #nav li a {
-        padding: 17px 10px;
-        font: 100% "Lucida Grande", "Lucida Sans Unicode", verdana, geneva, sans-serif;
-        text-decoration: none;
-        font-weight: bold;
-        color: #D6DBC1;
-        background: url(https://files.slack.com/files-pri/T06B9PCLY1E-F06SMFGFCLC/a_hover.gif) top no-repeat;
-    }
-
-    #nav a:hover {
-        background: url(https://files.slack.com/files-pri/T06B9PCLY1E-F06SMFGFCLC/a_hover.gif) bottom repeat-x #ffc2bd;
-    }
-
-    a em {
-        font-style: normal;
-        text-decoration: underline;
-    }
-
-    #content_main {
-        margin: 18px 0 0 0;
-        padding: 5px 15px 15px 15px;
-        /* background:url(../images/content_sub.jpg) top left no-repeat; */
-        background-color: rgb(252, 253, 231);
-    }
-
-    a {
-        color: #fff;
-        text-decoration: none;
-    }
-
-    #content_main a:hover {
-        text-decoration: underline;
-    }
-
-    #content_main h2,
-    h3,
-    p,
-    blockquote {
-        margin: 15px;
-        line-height: 25px;
-        font-size: 120%;
-    }
-
-    #content_main h3 {
-        color: #939D8C;
-        font-size: 120%;
-    }
-
-    #content_main ul,
-    ol {
-        margin: 15px 30px;
-        line-height: 25px;
-    }
-
-    #content_main h2 {
-        font: 180% Arial;
-    }
-
-    .row {
-        width: 450px;
-        height: 400px;
-        overflow-y: scroll;
-    }
-
-    .row::-webkit-scrollbar {
-        display: none;
-    }
-
-    #intro {
-        color: #596356;
-    }
-
-    .user-img {
-        border: 3px solid #ebebeb;
-    }
-
-    p.details {
-        border-top: 1px solid #202114;
-        border-bottom: 1px solid #202114;
-        color: #959F91;
-        font: 80% Verdana;
-        text-transform: uppercase;
-        padding: 7px 0;
-    }
-
-    p.details a {
-        color: #959F91;
-        border-bottom: 1px solid #596356;
-    }
-
-    p.details a.comlink {
-        float: right;
-    }
-
-    .col-8 {
-        width: 100%;
-        margin: 0 auto;
-        overflow-y: scroll;
-
-    }
-
-
-    #footer {
-        text-align: center;
-        margin: 30px 0 0 0;
-        padding: 15px;
-        font-size: 90%;
-        border-top: 1px solid #333;
-        margin: 20px;
-
-    }
-
-    .validate {
-        margin-bottom: 40px;
-    }
-
-    .validate a {
-        color: #9485be;
-        text-decoration-line: none;
-    }
-
-    /* 버튼시작! */
-    #button {
-        text-align: left;
-        padding-top: 50px;
-    }
-
-    /* Spot은 href 안쪽의 span으로, 부모를 채우고 전체 div에 대한 hover와 링크 작동을 가능하게 합니다 */
-    .spot {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    /*
-          이것은 SVG 자체가 채울 외부 SVG 래퍼입니다. 여러 개의 svg-wrapper 클래스를 나란히 배치할 수 있습니다
-      */
-
-    .svg-wrapper {
-        margin-top: 0;
-        position: relative;
-        width: 150px;
-        /*HTML에서 지정된 높이와 너비와 동일한 높이/너비를 사용해야함*/
-        height: 40px;
-        display: inline-block;
-        border-radius: 3px;
-        margin-left: 5px;
-        margin-right: 5px;
-        margin-bottom: 10px;
-    }
-
-    /*
-        여기서는 hover가 없을 때 SVG의 채우기, 색상, 선 두께 및 선 패턴을 정의합니다.
-        dasharray와 offset은 단어 아래의 선 위치를 함께 정의하며, 전환 속도도 설정됩니다.
-      */
-
-    #shape {
-        stroke-width: 6px;
-        fill: transparent;
-        stroke: #009ec1;
-        stroke-dasharray: 85 400;
-        stroke-dashoffset: -220;
-        transition: 1s all ease;
-    }
-
-    /* SVG 내부로 텍스트를 밀어올립니다. 이렇게 하지 않으면 텍스트가 div 요소 아래에 위치합니다. */
-
-    #text {
-        margin-top: -35px;
-        text-align: center;
-    }
-
-    #text a {
-        color: #596356;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 1.1em;
-    }
-
-    /* 
-          마우스 커서가 올라간 상태에서 모양을 변경함.
-          (선의 색깔과 두께를 변경하고, 버튼을 둘러 싸게 함.)
-      */
-
-    .svg-wrapper:hover #shape {
-        stroke-dasharray: 50 0;
-        stroke-width: 3px;
-        stroke-dashoffset: 0;
-        stroke: #06D6A0;
-    }
-
-    /* 버튼 끝 */
-</style>
 
 <head>
     <title>Maple To Do Checklist</title>
@@ -437,6 +60,7 @@
                         src="https://open.api.nexon.com/static/maplestory/Character/PNFHNODPHFHKCKDENABNEFKDLKPDOEGHPOMADFMHINGHHLNLNLEEKJGKJJCPHNIHKIAOBCCDNKJLCKMIMAMKBJIOLHMFPKGEDPFDKBJEEAAAPFPDIDMJHEOLANJBMKHGOPHEAAOPEPJJJGMNHELNAEAIHOJIFIOIDBNKBOCLIABKJODNFAMLKCKKCMBFGKKDNABCGOHPADDAHJMEMFCJGBMCOGDJCCJMKOFPOLAEELFKNHBACNEOLOPDFJDGHOBG.png"
                         width="240" height="240">
                 </div>
+                <div id="userInfo">
                 <div class="user-info">
                     <div>
                         <span id="nickname">퇴사한나도</span>
@@ -461,7 +85,7 @@
             font-size: 18px;">구름</span>
                     </div>
                 </div>
-
+            </div>
                 <div id="button">
                     <ul>
                         <div class="svg-wrapper">
@@ -535,7 +159,7 @@
                     <div class="row">
                         <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true"
                             class="scrollspy-example" tabindex="0">
-                            <h3 id="list-item-1">일일 퀘스트!</h3>
+                            <h3 id="list-item-1">일간 퀘스트</h3>
                             <div class="D-1">
                                 <input class="form-check-input" type="checkbox" name="number" value="y"
                                     id="flexCheckDefault">
@@ -546,7 +170,7 @@
                             <div class="D-2">
                                 <input class="form-check-input" type="checkbox" value="2" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                    어센틱심볼 일일퀘스트
+                                    아케인심볼, 어센틱심볼 일일퀘스트
                                 </label>
                             </div>
                             <div class="D-3">
@@ -555,7 +179,8 @@
                                     몬스터파크, 몬스터파크 익스트림
                                 </label>
                             </div>
-                            <h6>~~~일일보스~~~</h6>
+                            <br>
+                            <h6>~~~일일 보스~~~</h6>
                             <div class="D-4">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
@@ -622,13 +247,16 @@
                                     파풀라투스(이지, 노말)
                                 </label>
                             </div>
+                            <br>
                             <h6>~~~이벤트~~~</h6>
                             <div class="D-14">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                    파풀라투스(이지, 노말)
+                                    슈피겔라의 황금마차
                                 </label>
                             </div>
+                            <br>
+                            <br>
                             <h3 id="list-item-2">주간 퀘스트</h3>
                             <div class="W-1">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -684,6 +312,7 @@
                                     길드 컨텐츠 : 플래그 레이스
                                 </label>
                             </div>
+                            <br>
                             <h6>~~~주간보스~~~</h6>
                             <div class="W-10">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
