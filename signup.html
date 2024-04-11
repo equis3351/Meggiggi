@@ -121,46 +121,10 @@
                 'guild': $('#guild').val()
             };
 
-            await addDoc(collection(db, "Meggiggi"), doc);
+            await addDoc(collection(db, "USER"), doc);
             alert('회원 가입 완료!');
             location.replace('login.html');
         })
-
-        function makeCharacter() {
-            let id = $('#id').val();
-            let pw = $('#pw').val();
-            let job = $('#job').val();
-            let lv = $('#lv').val();
-            let world = $('#world').val();
-            let guild = $('#guild').val();
-
-            let temp_html = `              
-              <div class="user-info">
-                    <div>
-                        <span id="nickname">${id}</span>
-                        <span id="level">${lv}</span>
-                    </div>
-                    <div>
-                        <span id="job">${job}</span>
-                        <span id="level-text"> Level</span>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <span style="color:#f27373;
-            font-size: 18px; margin-right: 45px;">월드</span>
-                        <span style="color:gray;
-            font-size: 18px;">${world}</span>
-                    </div>
-                    <div>
-                        <span style="color:#f27373;
-            font-size: 18px; margin-right: 45px;">길드</span>
-                        <span style="color:gray;
-            font-size: 18px;">${guild}</span>
-                    </div>
-                </div>`;
-            $('userInfo').append(temp_html);
-        }
 
     </script>
 </head>
